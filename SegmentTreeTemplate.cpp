@@ -1,6 +1,24 @@
 /*Multi purpose Segment Tree Template*/
 /*range are half-open i.e [l,r)*/
 /*By default it will perform range increment update and calculate range sum*/
+
+/*
+-> If vector of segTree is used, then don't intilise as below
+vector<segTree*> S(SN,new segTree(n)); -> this will create every element point to same memory. 
+
+-> use below format, avoid using vector use array, better to use array 
+vector<segTree*> S(SN) ; 
+for(int i=0;i<SN;i++)S[i] = new segTree(n);
+
+If this SegmentTree is causing TLE/MLE then consider following modifications
+-> try delete segTree pointers after code and before return statement.
+-> If segTree is point update and range query, then comment out propogate function call
+-> If lazyNode is not required, the comment out every where it is used.
+-> Modified build function to remove passing vector<int> a, if default value is used eveywhere.
+-> Remove build function, modify code to add parameter for int l, int r and its value in every function call.
+
+*/
+
 struct segNode
 {
     int val;
